@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use('/api/cars', carRoutes);
+app.use('/api/car', carRoutes);
 
 // MongoDB Atlas ga ulanish
 // MongoDB Atlas ga ulanish
