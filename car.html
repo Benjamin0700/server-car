@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Car Admin Panel</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      padding: 20px;
+    }
+    form {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 8px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    label {
+      font-weight: bold;
+    }
+    button {
+      background: #4caf50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="carForm">
+    <h2>Yangi Avto Qo'shish</h2>
+
+    <label for="body">Kuzov turi</label>
+    <select name="body" required>
+      <option value="">Tanlang</option>
+      <option>Sedan</option>
+      <option>Hatchback</option>
+      <option>SUV</option>
+      <option>Coupe</option>
+      <option>Wagon</option>
+      <option>Pickup</option>
+      <option>Van</option>
+      <option>Minivan</option>
+      <option>Convertible</option>
+    </select>
+
+    <label for="condition">Holati</label>
+    <select name="condition" required>
+      <option value="">Tanlang</option>
+      <option>New</option>
+      <option>Used</option>
+      <option>Certified Pre-Owned</option>
+    </select>
+
+    <label for="mileage">Probeg (km)</label>
+    <input type="number" name="mileage" required>
+
+    <label for="engineSize">Dvigatel hajmi (L)</label>
+    <input type="number" name="engineSize" step="0.1" required>
+
+    <label for="fuelType">Yoqilgi turi</label>
+    <select name="fuelType" required>
+      <option value="">Tanlang</option>
+      <option>Petrol</option>
+      <option>Diesel</option>
+      <option>Electric</option>
+      <option>Hybrid</option>
+      <option>Gas</option>
+    </select>
+
+    <label for="door">Eshiklar soni</label>
+    <input type="number" name="door" required>
+
+    <label for="year">Yil</label>
+    <input type="number" name="year" required>
+
+    <label for="cylinder">Silindr soni</label>
+    <input type="number" name="cylinder" required>
+
+    <label for="transmission">Transmission</label>
+    <select name="transmission" required>
+      <option value="">Tanlang</option>
+      <option>Automatic</option>
+      <option>Manual</option>
+      <option>Semi-Automatic</option>
+      <option>CVT</option>
+    </select>
+
+    <label for="color">Rang</label>
+    <input type="text" name="color" required>
+
+    <label for="driveType">Haydash turi</label>
+    <select name="driveType" required>
+      <option value="">Tanlang</option>
+      <option>Front-Wheel Drive</option>
+      <option>Rear-Wheel Drive</option>
+      <option>All-Wheel Drive (AWD/4WD)</option>
+      <option>4x4</option>
+    </select>
+
+    <label for="vin">VIN raqami</label>
+    <input type="text" name="vin" required>
+
+    <label for="description">Tavsif</label>
+    <textarea name="description" rows="4" required></textarea>
+
+    <label for="length">Uzunligi</label>
+    <input type="text" name="length" required>
+
+    <label for="height">Balandligi</label>
+    <input type="text" name="height" required>
+
+    <label for="width">Kengligi</label>
+    <input type="text" name="width" required>
+
+    <label for="weight">Og'irligi (kg)</label>
+    <input type="number" name="weight" required>
+
+    <label for="maxweight">Max yuk (kg)</label>
+    <input type="number" name="maxweight" required>
+
+    <label for="seats">O‘rindiqlar soni</label>
+    <input type="number" name="seats" required>
+
+    <label for="fuelConsumption">100kmda yoqilg'i sarfi</label>
+    <input type="number" name="fuelConsumption" step="0.1" required>
+
+    <label for="fuelRange">To‘liq bak masofasi (km)</label>
+    <input type="number" name="fuelRange" required>
+
+    <label for="mainImage">Asosiy rasm (URL)</label>
+    <input type="text" name="mainImage" required>
+
+    <label for="address">Manzil</label>
+    <input type="text" name="address" required>
+
+    <label for="city">Shahar</label>
+    <input type="text" name="city" required>
+
+    <label for="state">Viloyat (optional)</label>
+    <input type="text" name="state">
+
+    <label for="country">Davlat</label>
+    <input type="text" name="country" required>
+
+    <label for="longitude">Longitude</label>
+    <input type="number" step="any" name="longitude" required>
+
+    <label for="latitude">Latitude</label>
+    <input type="number" step="any" name="latitude" required>
+
+    <label for="price">Narxi</label>
+    <input type="number" name="price" required>
+
+    <button type="submit">Yuborish</button>
+  </form>
+
+  <script>
+    const form = document.getElementById("carForm");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const data = {
+        body: formData.get("body"),
+        condition: formData.get("condition"),
+        mileage: +formData.get("mileage"),
+        engineSize: +formData.get("engineSize"),
+        fuelType: formData.get("fuelType"),
+        door: formData.get("door"),
+        year: +formData.get("year"),
+        cylinder: +formData.get("cylinder"),
+        transmission: formData.get("transmission"),
+        color: formData.get("color"),
+        driveType: formData.get("driveType"),
+        vin: formData.get("vin"),
+        description: formData.get("description"),
+        length: formData.get("length"),
+        height: formData.get("height"),
+        width: formData.get("width"),
+        weight: +formData.get("weight"),
+        maxweight: +formData.get("maxweight"),
+        seats: +formData.get("seats"),
+        fuelConsumption: +formData.get("fuelConsumption"),
+        fuelRange: +formData.get("fuelRange"),
+        images: {
+          main: formData.get("mainImage"),
+        },
+        location: {
+          address: formData.get("address"),
+          city: formData.get("city"),
+          state: formData.get("state"),
+          country: formData.get("country"),
+          coordinates: {
+            longitude: +formData.get("longitude"),
+            latitude: +formData.get("latitude"),
+          }
+        },
+        showOnMap: true,
+        directionsAvailable: true,
+        price: +formData.get("price")
+      };
+
+      try {
+        const response = await fetch("http://localhost:3000/api/cars", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+          alert("Muvaffaqiyatli yuborildi!");
+          form.reset();
+        } else {
+          const error = await response.text();
+          alert("Xatolik: " + error);
+        }
+      } catch (err) {
+        alert("Tarmoq xatosi: " + err.message);
+      }
+    });
+  </script>
+
+</body>
+</html>
